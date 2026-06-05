@@ -1,0 +1,30 @@
+{
+    "modules-center": ["clock"],
+    "modules-right": ["cpu", "memory", "battery", "network"],
+    "clock": {
+        "format": "\uf017 {:%I:%M %p}",
+        "format-alt": "\uf073 {:%Y-%m-%d}",
+        "tooltip-format": "{calendar}"
+    },
+    "cpu": {
+        "format": "\uf4bc {usage}%",
+        "interval": 2
+    },
+    "memory": {
+        "format": "\uf538 {percentage}%",
+        "interval": 5
+    },
+    "battery": {
+        "interval": 60,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-icons": ["\uf244", "\uf243", "\uf242", "\uf241", "\uf240"]
+    },
+    "network": {
+        "format-wifi": "\uf1eb {essid}",
+        "format-ethernet": "\uf6ff connected",
+        "format-disconnected": "\uf057 disconnected"
+    }}

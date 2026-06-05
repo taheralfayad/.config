@@ -1,0 +1,27 @@
+* {
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 13px;
+}
+
+window#waybar {
+    background: rgba(30, 30, 46, 0.9);
+    color: #cdd6f4;
+	padding: 4px 0;
+}
+
+#clock, #cpu, #memory, #battery, #network {
+    padding: 0 12px;
+    margin: 0 4px;
+}
+
+#clock {
+    color: #f9e2af;
+}
+
+#battery.warning {
+    color: #fab387;
+}
+
+#battery.critical {
+    color: #f38ba8;
+}
