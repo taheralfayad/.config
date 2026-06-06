@@ -140,13 +140,13 @@ hl.device({
 
 local mainMod = "SUPER"
 
-hl.bind(mainMod .. " + return", hl.dsp.exec_cmd(terminal))
+hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(terminal))
 local closeWindowBind = hl.bind(mainMod .. " + W", hl.dsp.window.close())
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))
-hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("falkon"))
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("thorium-browser"))
 hl.bind("Print", hl.dsp.exec_cmd("grimblast copy screen"))
 
 hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))

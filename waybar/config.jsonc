@@ -1,4 +1,5 @@
 {
+	"modules-left": ["hyprland/workspaces"],
     "modules-center": ["clock"],
     "modules-right": ["cpu", "memory", "battery", "network"],
     "clock": {
@@ -27,4 +28,12 @@
         "format-wifi": "\uf1eb {essid}",
         "format-ethernet": "\uf6ff connected",
         "format-disconnected": "\uf057 disconnected"
-    }}
+    },
+	"hyprland/workspaces": {
+	  "format": "{name}",
+	  "on-click": "activate",
+	  "sort-by-number": true
+	}
+}
+
+

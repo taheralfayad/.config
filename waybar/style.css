@@ -25,3 +25,14 @@ window#waybar {
 #battery.critical {
     color: #f38ba8;
 }
+
+#workspaces button {
+  padding: 0 8px;
+  color: #888;
+}
+
+#workspaces button.active {
+  color: #fff;
+  background: #444;
+  border-radius: 6px;
+}
