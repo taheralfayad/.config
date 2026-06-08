@@ -12,7 +12,7 @@
         "interval": 2
     },
     "memory": {
-        "format": "\uf538 {percentage}%",
+        "format": "\uf4be {percentage}%",
         "interval": 5
     },
     "battery": {

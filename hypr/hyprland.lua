@@ -11,10 +11,15 @@ hl.on("hyprland.start", function ()
   hl.exec_cmd("waybar & hyprpaper")
 end)
 
+hl.on("hyprland.start", function () 
+  hl.exec_cmd("$HOME/.config/hypr/wallpapers/transition.sh")
+end)
 
 hl.env("XCURSOR_SIZE", "24")
-
 hl.env("HYPRCURSOR_SIZE", "24")
+hl.env("LIBVA_DRIVER_NAME", "nvidia")
+hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
+hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
 
 hl.config({
     general = {
@@ -144,9 +149,10 @@ hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(terminal))
 local closeWindowBind = hl.bind(mainMod .. " + W", hl.dsp.window.close())
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ action = "toggle" }))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))
-hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("thorium-browser"))
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("firefox"))
 hl.bind("Print", hl.dsp.exec_cmd("grimblast copy screen"))
 
 hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
