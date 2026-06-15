@@ -22,3 +22,11 @@ vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' 
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
 
 vim.wo.number=true
+
+vim.api.nvim_set_hl(0, "Normal", { bg = "#000000" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#000000" })
+
+vim.diagnostic.config({
+    virtual_text = false,
+    virtual_lines = { current_line = true },
+})
