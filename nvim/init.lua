@@ -28,22 +28,23 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	end,
 })
 
-local builtin = require('telescope.builtin')
+local builtin = require("telescope.builtin")
 
 vim.cmd.colorscheme("kanagawa")
 
 vim.opt["tabstop"] = 4
 vim.opt["shiftwidth"] = 4
 
-vim.keymap.set('n', '<leader>ev', ':e $MYVIMRC<CR>', { desc = 'Edit init.lua' })
-vim.keymap.set('n', '<leader>ff', function()
+vim.keymap.set("n", "<leader>ev", ":e $MYVIMRC<CR>", { desc = "Edit init.lua" })
+vim.keymap.set("n", "<leader>ff", function()
 	builtin.find_files({ hidden = true, no_ignore = true })
-end, { desc = 'Telescope find files including hidden' })
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
-vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+end, { desc = "Telescope find files including hidden" })
+vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
+vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
+vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
 
 vim.wo.number = true
+vim.g.vim_svelte_plugin_use_typescript = 1
 
 vim.diagnostic.config({
 	virtual_text = false,
