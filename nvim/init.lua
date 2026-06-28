@@ -1,3 +1,4 @@
+-- installed packages
 vim.pack.add {
 	{ src = 'https://github.com/neovim/nvim-lspconfig' },
 	{ src = 'https://github.com/mason-org/mason.nvim' },
@@ -6,9 +7,9 @@ vim.pack.add {
 	{ src = 'https://github.com/nvim-lua/plenary.nvim' },
 	{ src = 'https://github.com/rebelot/kanagawa.nvim' },
 	{ src = 'https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim' },
-	{ src = 'https://github.com/nvim-treesitter/nvim-treesitter',          version = 'main' },
 }
 
+-- mason setup
 require('mason').setup()
 require('mason-lspconfig').setup()
 require('mason-tool-installer').setup({
@@ -20,22 +21,32 @@ require('mason-tool-installer').setup({
 		"gopls",
 	}
 })
-require('nvim-treesitter').setup()
 
+-- lsp config
 vim.api.nvim_create_autocmd("BufWritePre", {
 	pattern = "*",
 	callback = function()
 		vim.lsp.buf.format({ async = false })
 	end,
 })
+vim.lsp.enable('gopls')
+vim.lsp.inlay_hint.enable(true)
 
+-- telescope
 local builtin = require("telescope.builtin")
 
+-- visuals
 vim.cmd.colorscheme("kanagawa")
+vim.wo.number = true
+vim.keymap.set('n', '<leader>th', function()
+	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end, { desc = 'Toggle inlay hints' })
 
+-- whitespace
 vim.opt["tabstop"] = 4
 vim.opt["shiftwidth"] = 4
 
+-- keymaps
 vim.keymap.set("n", "<leader>ev", ":e $MYVIMRC<CR>", { desc = "Edit init.lua" })
 vim.keymap.set("n", "<leader>ff", function()
 	builtin.find_files({ hidden = true, no_ignore = true })
@@ -46,14 +57,3 @@ vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help ta
 vim.keymap.set('n', '<leader>th', function()
 	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end, { desc = 'Toggle inlay hints' })
-
-vim.wo.number = true
-vim.g.vim_svelte_plugin_use_typescript = 1
-
-vim.lsp.enable('gopls')
-vim.lsp.inlay_hint.enable(true)
-
-vim.diagnostic.config({
-	virtual_text = false,
-	virtual_lines = { current_line = true },
-})
