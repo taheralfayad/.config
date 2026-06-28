@@ -17,6 +17,7 @@ require('mason-tool-installer').setup({
 		"prettier",
 		"svelte-language-server",
 		"golangci-lint",
+		"gopls",
 	}
 })
 require('nvim-treesitter').setup()
@@ -42,9 +43,15 @@ end, { desc = "Telescope find files including hidden" })
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
 vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
+vim.keymap.set('n', '<leader>th', function()
+	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end, { desc = 'Toggle inlay hints' })
 
 vim.wo.number = true
 vim.g.vim_svelte_plugin_use_typescript = 1
+
+vim.lsp.enable('gopls')
+vim.lsp.inlay_hint.enable(true)
 
 vim.diagnostic.config({
 	virtual_text = false,
