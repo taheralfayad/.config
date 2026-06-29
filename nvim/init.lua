@@ -12,7 +12,7 @@ vim.pack.add {
 -- mason setup
 require('mason').setup()
 require('mason-lspconfig').setup()
-require('mason-tool-installer').setup({
+require("mason-tool-installer").setup({
 	ensure_installed = {
 		"lua_ls",
 		"prettier",
@@ -38,9 +38,12 @@ local builtin = require("telescope.builtin")
 -- visuals
 vim.cmd.colorscheme("kanagawa")
 vim.wo.number = true
-vim.keymap.set('n', '<leader>th', function()
-	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-end, { desc = 'Toggle inlay hints' })
+vim.g.vim_svelte_plugin_use_typescript = 1
+vim.o.autocomplete = true
+vim.diagnostic.config({
+	virtual_text = false,
+	virtual_lines = { current_line = true },
+})
 
 -- whitespace
 vim.opt["tabstop"] = 4
@@ -57,3 +60,4 @@ vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help ta
 vim.keymap.set('n', '<leader>th', function()
 	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end, { desc = 'Toggle inlay hints' })
+
