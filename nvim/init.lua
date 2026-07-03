@@ -19,6 +19,7 @@ require("mason-tool-installer").setup({
 		"svelte-language-server",
 		"golangci-lint",
 		"gopls",
+		"tailwindcss-language-server"
 	},
 })
 
@@ -30,6 +31,8 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	end,
 })
 vim.lsp.enable("gopls")
+vim.lsp.enable("svelte-language-server")
+vim.lsp.enable("tailwindcss-language-server")
 vim.lsp.inlay_hint.enable(true)
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
