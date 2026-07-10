@@ -30,15 +30,13 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 		vim.lsp.buf.format({ async = false })
 	end,
 })
-vim.lsp.enable("gopls")
-vim.lsp.enable("svelte-language-server")
-vim.lsp.enable("tailwindcss-language-server")
+vim.lsp.enable({ "gopls", "svelte-language-server", "tailwindcss-language-server", "html" })
 vim.lsp.inlay_hint.enable(true)
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
 		local client = vim.lsp.get_client_by_id(args.data.client_id)
-		if client:supports_method("textDocument/completion") then
-			vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = false })
+		if client and client:supports_method("textDocument/completion") then
+			vim.lsp.completion.enable(true, args.data.client_id, args.buf, { autotrigger = true })
 		end
 	end,
 })
@@ -50,12 +48,13 @@ local builtin = require("telescope.builtin")
 vim.cmd.colorscheme("kanagawa")
 vim.wo.number = true
 vim.g.vim_svelte_plugin_use_typescript = 1
-vim.o.autocomplete = true
 vim.diagnostic.config({
 	virtual_text = false,
 	virtual_lines = { current_line = true },
 })
-vim.o.completeopt = "menu,menuone,noselect"
+
+vim.opt.completeopt = { "menu", "menuone", "noselect", "popup" }
+vim.o.autocomplete = true
 
 -- whitespace
 vim.opt["tabstop"] = 4
@@ -64,7 +63,7 @@ vim.opt["shiftwidth"] = 4
 -- keymaps
 vim.keymap.set("n", "<leader>ev", ":e $MYVIMRC<CR>", { desc = "Edit init.lua" })
 vim.keymap.set("n", "<leader>ff", function()
-	builtin.find_files({ hidden = true, no_ignore = true })
+	builtin.find_files()
 end, { desc = "Telescope find files including hidden" })
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
 vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
