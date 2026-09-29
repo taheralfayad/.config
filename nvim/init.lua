@@ -7,6 +7,7 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/rebelot/kanagawa.nvim" },
 	{ src = "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim" },
+	{ src = "https://github.com/stevearc/conform.nvim" },
 })
 
 -- mason setup
@@ -16,6 +17,7 @@ require("mason-tool-installer").setup({
 	ensure_installed = {
 		"lua_ls",
 		"prettier",
+		"vtsls",
 		"svelte-language-server",
 		"golangci-lint",
 		"gopls",
@@ -30,8 +32,29 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 		vim.lsp.buf.format({ async = false })
 	end,
 })
-vim.lsp.enable({ "gopls", "svelte-language-server", "tailwindcss-language-server", "html" })
+vim.lsp.enable({ "gopls", "vtsls", "svelte-language-server", "tailwindcss-language-server", "html" })
 vim.lsp.inlay_hint.enable(true)
+
+require("conform").setup({
+	formatters_by_ft = {
+		javascript = { "prettier" },
+		javascriptreact = { "prettier" },
+		typescript = { "prettier" },
+		typescriptreact = { "prettier" },
+		css = { "prettier" },
+		scss = { "prettier" },
+		html = { "prettier" },
+		json = { "prettier" },
+		jsonc = { "prettier" },
+		markdown = { "prettier" },
+		["markdown.mdx"] = { "prettier" },
+	},
+	format_on_save = {
+		timeout_ms = 1000,
+		lsp_format = "fallback",
+	},
+})
+
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
 		local client = vim.lsp.get_client_by_id(args.data.client_id)

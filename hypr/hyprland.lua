@@ -151,7 +151,8 @@ hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ action = "toggle" }))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("firefox"))
-hl.bind("Print", hl.dsp.exec_cmd("grimblast copy screen"))
+hl.bind("Print",
+	hl.dsp.exec_cmd("grimblast copysave screen ~/Pictures/Screenshots/screenshot_$(date +%Y%m%d_%H%M%S).png"))
 hl.bind("SHIFT + Print", hl.dsp.exec_cmd("slurp | grim -g - ~/Pictures/$(date +'%Y%m%d-%H%M%S').png"))
 
 hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
